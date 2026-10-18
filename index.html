@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>HeyApp — native Flutter Android app | running-google-2</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="HeyApp — native Flutter Android app" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="https://isaiah-oluwasola.github.io/running-google-2/flutter_app/" />
+<meta property="og:url" content="https://isaiah-oluwasola.github.io/running-google-2/flutter_app/" />
+<meta property="og:site_name" content="running-google-2" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="HeyApp — native Flutter Android app" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","headline":"HeyApp — native Flutter Android app","url":"https://isaiah-oluwasola.github.io/running-google-2/flutter_app/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/running-google-2/assets/css/style.css?v=e2735a5db5628af30398ab8860efb9d2e7da7aab">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/running-google-2/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="https://isaiah-oluwasola.github.io/running-google-2/">running-google-2</a></h1>
+      
+
+      <h1 id="heyapp--native-flutter-android-app">HeyApp — native Flutter Android app</h1>
+
+<p>A native Flutter port of <code class="language-plaintext highlighter-rouge">../index.html</code>. It uses the same Supabase project (tables
+<code class="language-plaintext highlighter-rouge">profiles</code>, <code class="language-plaintext highlighter-rouge">messages</code>, <code class="language-plaintext highlighter-rouge">groups</code>, <code class="language-plaintext highlighter-rouge">group_members</code>), the same Firebase project
+(<code class="language-plaintext highlighter-rouge">sayhi-2026</code>) for sign-in, and the same realtime channels, so existing users and data
+carry over and web and app users can message and call each other.</p>
+
+<h2 id="whats-ported">What’s ported</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>index.html feature</th>
+      <th>Flutter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Google / Apple sign-in (Firebase)</td>
+      <td><code class="language-plaintext highlighter-rouge">services/auth.dart</code> (google_sign_in, sign_in_with_apple)</td>
+    </tr>
+    <tr>
+      <td>Username setup for new users</td>
+      <td><code class="language-plaintext highlighter-rouge">screens/auth_screens.dart</code> (<code class="language-plaintext highlighter-rouge">UsernameScreen</code>)</td>
+    </tr>
+    <tr>
+      <td>Chats list (DMs + groups), unread badges</td>
+      <td><code class="language-plaintext highlighter-rouge">screens/home_screen.dart</code> (<code class="language-plaintext highlighter-rouge">ChatsTab</code>)</td>
+    </tr>
+    <tr>
+      <td>1:1 and group chat, realtime delivery</td>
+      <td><code class="language-plaintext highlighter-rouge">screens/chat_screen.dart</code>, <code class="language-plaintext highlighter-rouge">services/realtime.dart</code></td>
+    </tr>
+    <tr>
+      <td>Typing indicator (DM)</td>
+      <td><code class="language-plaintext highlighter-rouge">chat_screen.dart</code> (broadcast <code class="language-plaintext highlighter-rouge">typing-&lt;a&gt;-&lt;b&gt;</code>)</td>
+    </tr>
+    <tr>
+      <td>Read receipts</td>
+      <td><code class="language-plaintext highlighter-rouge">Backend.markRead</code></td>
+    </tr>
+    <tr>
+      <td>Reactions (long-press)</td>
+      <td><code class="language-plaintext highlighter-rouge">chat_screen.dart</code> (<code class="language-plaintext highlighter-rouge">messages.reaction</code>)</td>
+    </tr>
+    <tr>
+      <td>Translate messages</td>
+      <td><code class="language-plaintext highlighter-rouge">services/ai.dart</code> + Settings → Translate messages</td>
+    </tr>
+    <tr>
+      <td>Voice input</td>
+      <td><code class="language-plaintext highlighter-rouge">chat_screen.dart</code> (speech_to_text)</td>
+    </tr>
+    <tr>
+      <td>Image messages (data URLs)</td>
+      <td><code class="language-plaintext highlighter-rouge">models.dart</code> (<code class="language-plaintext highlighter-rouge">Message.imageBytes</code>)</td>
+    </tr>
+    <tr>
+      <td>Search users, start chat</td>
+      <td><code class="language-plaintext highlighter-rouge">screens/home_screen.dart</code> (<code class="language-plaintext highlighter-rouge">SearchTab</code>)</td>
+    </tr>
+    <tr>
+      <td>Create / name / info / add members / leave group</td>
+      <td><code class="language-plaintext highlighter-rouge">screens/group_screens.dart</code></td>
+    </tr>
+    <tr>
+      <td>Audio &amp; video calls (WebRTC), busy/reject/cancel, mid-call video upgrade, camera flip, mute, speaker</td>
+      <td><code class="language-plaintext highlighter-rouge">services/calls.dart</code>, <code class="language-plaintext highlighter-rouge">widgets/call_overlay.dart</code></td>
+    </tr>
+    <tr>
+      <td>AI image generation</td>
+      <td><code class="language-plaintext highlighter-rouge">screens/generate_screen.dart</code>, <code class="language-plaintext highlighter-rouge">services/ai.dart</code></td>
+    </tr>
+    <tr>
+      <td>Settings: edit name, theme, translation language, terms, logout</td>
+      <td><code class="language-plaintext highlighter-rouge">screens/home_screen.dart</code> (<code class="language-plaintext highlighter-rouge">SettingsTab</code>)</td>
+    </tr>
+    <tr>
+      <td>Terms &amp; Conditions</td>
+      <td><code class="language-plaintext highlighter-rouge">screens/auth_screens.dart</code> (<code class="language-plaintext highlighter-rouge">TermsScreen</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Preferences use the same keys as the web app (<code class="language-plaintext highlighter-rouge">sayhi_theme</code>, <code class="language-plaintext highlighter-rouge">sayhi_translate_lang</code>).</p>
+
+<h2 id="not-ported-because-the-web-app-never-ran-them">Not ported (because the web app never ran them)</h2>
+
+<ul>
+  <li><strong>Smart replies, tone check, summarizer:</strong> these call <code class="language-plaintext highlighter-rouge">puter.ai</code>, but <code class="language-plaintext highlighter-rouge">index.html</code>
+never loads the Puter SDK, so these features were always disabled. They are left out.</li>
+  <li><strong>File upload:</strong> the web app shows “coming soon”, so it isn’t implemented.</li>
+  <li><strong>Group calls:</strong> the web app shows “coming soon”, so it isn’t implemented.</li>
+</ul>
+
+<h2 id="build">Build</h2>
+
+<p>Requirements: Flutter 3.27+ (stable), JDK 17, Android SDK.</p>
+
+<ol>
+  <li>In the Firebase console (project <code class="language-plaintext highlighter-rouge">sayhi-2026</code>), add an Android app with package name
+<code class="language-plaintext highlighter-rouge">com.heyapp.heyapp</code>, then download <code class="language-plaintext highlighter-rouge">google-services.json</code> into
+<code class="language-plaintext highlighter-rouge">flutter_app/android/app/</code> <strong>after</strong> the first <code class="language-plaintext highlighter-rouge">flutter create</code> (the build script
+creates <code class="language-plaintext highlighter-rouge">android/</code> for you; run it once, then copy the file and run again).
+Add your debug and release <strong>SHA-1</strong> fingerprints to that Android app, or Google
+sign-in will fail.</li>
+  <li>Run:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>flutter_app
+<span class="nv">IMAGE_API_TOKEN</span><span class="o">=</span>... ./build_apk.sh
+</code></pre></div>    </div>
+    <p>Output: <code class="language-plaintext highlighter-rouge">build/app/outputs/flutter-apk/app-release.apk</code></p>
+  </li>
+</ol>
+
+<p><code class="language-plaintext highlighter-rouge">minSdk</code> is <strong>24 (Android 7.0)</strong>. <code class="language-plaintext highlighter-rouge">firebase_core</code> 5.x and <code class="language-plaintext highlighter-rouge">firebase_auth</code> 7.x require it.
+Going lower would mean dropping Firebase Auth, which would change every user’s ID and
+break existing accounts.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">IMAGE_API_TOKEN</code> is passed at build time (<code class="language-plaintext highlighter-rouge">--dart-define</code>) and is not in the source.
+The web app still hard-codes the same token in <code class="language-plaintext highlighter-rouge">index.html</code>, so <strong>rotate that token</strong>.</li>
+  <li>Sign in with Apple on Android needs <code class="language-plaintext highlighter-rouge">APPLE_SERVICE_ID</code> and <code class="language-plaintext highlighter-rouge">APPLE_REDIRECT_URI</code>
+(an Apple “Service ID” with a web redirect). Without them, Apple sign-in fails on Android.</li>
+  <li>Supabase: the app uses the same anon key and the same tables as the web app. Row
+Level Security must allow what the app does (the web app relies on the same policies).</li>
+</ul>
+
+<h2 id="known-limitations--things-to-test">Known limitations / things to test</h2>
+
+<ul>
+  <li><strong>Not compiled in the authoring environment.</strong> The sandbox used to write this could not
+reach the Flutter, Dart or pub.dev servers, so it has not been run or analysed. Run
+<code class="language-plaintext highlighter-rouge">flutter analyze</code> and test on a device before release.</li>
+  <li>Generated images are shared through a chat picker (the web app shared to the open chat).</li>
+  <li>Realtime and call signalling use the same Supabase broadcast channels as the web app,
+so the protocol is compatible, but calls across networks still need TURN for some
+networks (only public STUN servers are configured, as in the web app).</li>
+</ul>
+
+
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>
